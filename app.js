@@ -5,6 +5,12 @@ var express     = require("express");
     methodOverride = require("method-override");
     mongoose    = require("mongoose");
 
+    //token auth includes
+    var cors = require('cors');
+    var authCtrl = require('./auth');
+    var middleware = require('./middleware');
+
+
     //Conect DB
     mongoose.connect('mongodb://localhost/haters', function(err, res) {
       	if(err) {

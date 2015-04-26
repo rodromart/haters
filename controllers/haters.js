@@ -10,7 +10,7 @@ exports.findAll = function(req, res) {
     if(err)
       res.send(500, err.message);
     console.log('GET /hates')
-    res.status(200).jsonp(haters);
+    res.status(200).jsonp(hates);
     });
 }
 
@@ -44,8 +44,7 @@ exports.addHate = function(req, res) {
 //PUT - Update a register already exists
 exports.updateHate = function(req, res) {
   Haters.findById(req.params.id, function(err, hate) {
-    user:  req.body.user;
-    hate:  req.body.hate;
+    hateUrl:  req.body.hateUrl;
     commet: req.body.commet;
     timestap: new Date().getTime();
 
@@ -64,13 +63,14 @@ exports.updateHate = function(req, res) {
 
 //DELETE - Delete a Hates with specified ID
 exports.deleteHate = function(req, res) {
-  Hate.findById(req.params.id, function(err, hate) {
-    Haters.remove(function(err) {
+  Haters.findById(req.params.id, function(err, hate) {
+    hate.remove(function(err) {
       if(!err) {
       console.log('Removed');
       } else {
       console.log('ERROR: ' + err);
       }
+      res.status(200);
     })
   });
 }
